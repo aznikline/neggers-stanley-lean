@@ -1,0 +1,21 @@
+import NeggersStanley
+
+#check NeggersStanley.neggers_stanley_counterexample
+#check NeggersStanley.not_neggersConjecture
+#check NeggersStanley.exists_naturally_labeled_poset_with_nonreal_zero
+#print NeggersStanley.posetEulerianPolynomial
+#print NeggersStanley.NeggersConjecture
+#print NeggersStanley.descentPolynomial
+#print NeggersStanley.linearExtensionWords
+#print NeggersStanley.LabeledPoset
+#print axioms NeggersStanley.mem_extensionWords_iff
+#print axioms NeggersStanley.nodup_extensionWords
+#print axioms NeggersStanley.extensionWords_perm_filter
+#print axioms NeggersStanley.witness_counts
+#print axioms NeggersStanley.witness_naturally_labeled
+#print axioms NeggersStanley.witness_polynomial
+#print axioms NeggersStanley.witness_laguerre_value
+#print axioms NeggersStanley.neggers_stanley_counterexample
+#print axioms NeggersStanley.not_neggersConjecture
+#print axioms NeggersStanley.exists_naturally_labeled_poset_with_nonreal_zero
+#print axioms NeggersStanley.witness_linear_extension_count

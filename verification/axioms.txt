@@ -1,0 +1,43 @@
+NeggersStanley.neggers_stanley_counterexample :
+  ∃ P,
+    P.NaturallyLabeled ∧ ∃ z, (Polynomial.map (algebraMap ℝ ℂ) (NeggersStanley.descentPolynomial P)).IsRoot z ∧ z.im ≠ 0
+NeggersStanley.not_neggersConjecture : ¬NeggersStanley.NeggersConjecture
+NeggersStanley.exists_naturally_labeled_poset_with_nonreal_zero :
+  ∃ P,
+    (∀ (i j : Fin 17), i < j → ↑i < ↑j) ∧
+      ∃ z, (Polynomial.map (algebraMap ℝ ℂ) (NeggersStanley.posetEulerianPolynomial P)).IsRoot z ∧ z.im ≠ 0
+def NeggersStanley.posetEulerianPolynomial : {n : ℕ} → PartialOrder (Fin n) → Polynomial ℝ :=
+fun {n} P =>
+  (List.map (fun l => Polynomial.X ^ NeggersStanley.descents l)
+      (List.filter (fun l => decide (List.Pairwise (fun a b => ¬b < a) l)) (List.finRange n).permutations)).sum
+def NeggersStanley.NeggersConjecture : Prop :=
+∀ (n : ℕ) (P : NeggersStanley.LabeledPoset n),
+  P.NaturallyLabeled →
+    ∀ (z : ℂ), (Polynomial.map (algebraMap ℝ ℂ) (NeggersStanley.descentPolynomial P)).IsRoot z → z.im = 0
+def NeggersStanley.descentPolynomial : {n : ℕ} → NeggersStanley.LabeledPoset n → Polynomial ℝ :=
+fun {n} P =>
+  (List.map (fun l => Polynomial.X ^ (1 + NeggersStanley.descents l)) (NeggersStanley.linearExtensionWords P)).sum
+def NeggersStanley.linearExtensionWords : {n : ℕ} → NeggersStanley.LabeledPoset n → List (List (Fin n)) :=
+fun {n} P => List.filter (fun l => decide (List.Pairwise (fun a b => ¬P.rel b a) l)) (List.finRange n).permutations
+structure NeggersStanley.LabeledPoset (n : ℕ) : Type
+number of parameters: 1
+fields:
+  NeggersStanley.LabeledPoset.lt : Fin n → Fin n → Bool
+  NeggersStanley.LabeledPoset.irrefl : ∀ (i : Fin n), self.lt i i = false
+  NeggersStanley.LabeledPoset.trans : ∀ (i j k : Fin n), self.lt i j = true → self.lt j k = true → self.lt i k = true
+constructor:
+  NeggersStanley.LabeledPoset.mk {n : ℕ} (lt : Fin n → Fin n → Bool) (irrefl : ∀ (i : Fin n), lt i i = false)
+    (trans : ∀ (i j k : Fin n), lt i j = true → lt j k = true → lt i k = true) : NeggersStanley.LabeledPoset n
+'NeggersStanley.mem_extensionWords_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NeggersStanley.nodup_extensionWords' depends on axioms: [propext, Quot.sound]
+'NeggersStanley.extensionWords_perm_filter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NeggersStanley.witness_counts' depends on axioms: [propext]
+'NeggersStanley.witness_naturally_labeled' depends on axioms: [propext]
+'NeggersStanley.witness_polynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NeggersStanley.witness_laguerre_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NeggersStanley.neggers_stanley_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NeggersStanley.not_neggersConjecture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NeggersStanley.exists_naturally_labeled_poset_with_nonreal_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NeggersStanley.witness_linear_extension_count' depends on axioms: [propext, Classical.choice, Quot.sound]
